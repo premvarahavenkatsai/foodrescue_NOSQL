@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "trainedAt": "2026-10-29T15:02:02.275800+00:00",
+    "totalRecords": 1500,
+    "trainSamples": 1200,
+    "testSamples": 300,
+    "featuresCount": 21,
+    "featureNames": [
+      "quantityKg",
+      "shelfLifeHours",
+      "prepHour",
+      "distanceKm",
+      "storageTempCelsius",
+      "isWeekend",
+      "foodCategory_Bakery & Bread",
+      "foodCategory_Beverages",
+      "foodCategory_Cooked Meals",
+      "foodCategory_Dairy Products",
+      "foodCategory_Fresh Produce",
+      "foodCategory_Packaged Food",
+      "donorType_Catering Service",
+      "donorType_Hotel & Banquet",
+      "donorType_Restaurant",
+      "donorType_Supermarket",
+      "donorType_University Dining",
+      "transportMode_bicycle",
+      "transportMode_car",
+      "transportMode_motorcycle",
+      "transportMode_van"
+    ],
+    "mongoDatabase": "foodrescue_db",
+    "mongoSourceCollection": "ml_rescue_records"
+  },
+  "regression": {
+    "linear_regression": {
+      "modelName": "Linear Regression",
+      "type": "Regression",
+      "target": "deliveryTimeMinutes",
+      "r2_score": 0.9028,
+      "mae": 10.2199,
+      "rmse": 12.8137,
+      "description": "Standard linear estimator modeling delivery duration based on distance, quantity, and prep hour."
+    },
+    "random_forest_regressor": {
+      "modelName": "Random Forest Regressor",
+      "type": "Regression",
+      "target": "deliveryTimeMinutes",
+      "r2_score": 0.9551,
+      "mae": 7.1597,
+      "rmse": 8.7118,
+      "description": "Non-linear ensemble capturing complex interactions between distance, transport modes, and traffic windows."
+    }
+  },
+  "classification": {
+    "logistic_regression": {
+      "modelName": "Logistic Regression",
+      "type": "Classification",
+      "target": "claimSuccess",
+      "accuracy": 0.93,
+      "precision": 0.9561,
+      "recall": 0.952,
+      "f1": 0.954,
+      "confusion_matrix": [
+        [
+          61,
+          10
+        ],
+        [
+          11,
+          218
+        ]
+      ],
+      "description": "Parametric linear probability model estimating likelihood of donation rescue before expiration."
+    },
+    "decision_tree": {
+      "modelName": "Decision Tree Classifier",
+      "type": "Classification",
+      "target": "claimSuccess",
+      "accuracy": 0.93,
+      "precision": 0.9444,
+      "recall": 0.9651,
+      "f1": 0.9546,
+      "confusion_matrix": [
+        [
+          58,
+          13
+        ],
+        [
+          8,
+          221
+        ]
+      ],
+      "description": "Interpretable tree-based model partitioning feature space on critical shelf-life and distance thresholds."
+    },
+    "random_forest_classifier": {
+      "modelName": "Random Forest Classifier",
+      "type": "Classification",
+      "target": "claimSuccess",
+      "accuracy": 0.93,
+      "precision": 0.9483,
+      "recall": 0.9607,
+      "f1": 0.9544,
+      "confusion_matrix": [
+        [
+          59,
+          12
+        ],
+        [
+          9,
+          220
+        ]
+      ],
+      "description": "High-capacity ensemble reducing variance across multiple decision boundaries for robust claim prediction."
+    }
+  }
+}
